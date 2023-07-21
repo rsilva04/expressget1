@@ -24,3 +24,27 @@ function renderToDom(quotes){
         `
     }
 }
+
+
+function submitForm(event){
+    event.preventDefault();
+    let quote = document.querySelector('#quoteInput').value
+    let author = document.querySelector('#authorInput').value
+
+    let quoteToAdd = {
+        text: quote,
+        author: author
+    }
+    console.log(quoteToAdd);
+
+    axios.post('/quotes' , quoteToAdd).then((response)=> {
+        console.log(response);
+        document.querySelector('#quoteInput').value =''
+        document.querySelector('#authorInput').value =''
+        getQuotes()
+    }).catch((error) => {
+        console.log(error);
+        alert('Something went wrong')
+    })
+
+}

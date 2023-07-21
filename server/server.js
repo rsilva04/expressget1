@@ -16,6 +16,14 @@ app.get('/quotes', function(req, res){
 })
 
 
+app.post('/quotes', (req,res) => {
+    console.log('get a POST request.', req.body);
+
+    let quote = req.body
+    quoteList.push(quote)
+    res.sendStatus(201);
+})
+
 app.listen(port, function() {
   console.log('listening on port', port);
 });
